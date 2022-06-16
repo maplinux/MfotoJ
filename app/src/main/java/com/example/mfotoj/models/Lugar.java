@@ -8,17 +8,17 @@ import java.util.Date;
 
 
 
-public class Drink implements Parcelable
+public class Lugar implements Parcelable
 {
     public Date dateAndTime;
     public String comments;
     public String imageUri;
 
 
-    public Drink(){
+    public Lugar(){
     }
 
-    public Drink(Parcel in) {
+    public Lugar(Parcel in) {
         dateAndTime = new Date(in.readLong());
         comments = in.readString();
         imageUri = in.readString();
@@ -37,13 +37,13 @@ public class Drink implements Parcelable
         dest.writeString(comments);
         dest.writeString(imageUri);
     }
-    public static Parcelable.Creator<Drink> CREATOR = new
-            Parcelable.Creator<Drink>() {
-                public Drink createFromParcel(Parcel in) {
-                    return new Drink(in);
+    public static Parcelable.Creator<Lugar> CREATOR = new
+            Parcelable.Creator<Lugar>() {
+                public Lugar createFromParcel(Parcel in) {
+                    return new Lugar(in);
                 }
-                public Drink[] newArray(int size) {
-                    return new Drink[size];
+                public Lugar[] newArray(int size) {
+                    return new Lugar[size];
                 }
             };
 }

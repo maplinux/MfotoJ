@@ -18,12 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mfotoj.EntryActivity;
 import com.example.mfotoj.R;
-import com.example.mfotoj.models.Drink;
+import com.example.mfotoj.models.Lugar;
 
 import java.util.ArrayList;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
-    private ArrayList<Drink> mDrinks;
+    private ArrayList<Lugar> mLugars;
     private Context mContext;
 
 
@@ -33,7 +33,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         public TextView mCommentTextView;
         public TextView mDateTimeTextView;
         public ImageView mImageView;
-        public Drink mDrink;
+        public Lugar mLugar;
 
         public ViewHolder(View v) {
             super(v);
@@ -41,8 +41,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     }
 
     public MainAdapter(Context context,
-                       ArrayList<Drink> drinks) {
-        mDrinks = drinks;
+                       ArrayList<Lugar> lugars) {
+        mLugars = lugars;
         mContext = context;
     }
 
@@ -71,7 +71,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 if (view.getId() == holder.itemView.getId())
                 {
                     Intent intent = new Intent(mContext, EntryActivity.class);
-                    intent.putExtra("edit_drink", holder.mDrink);
+                    intent.putExtra("edit_drink", holder.mLugar);
                     ((Activity)mContext).startActivityForResult(intent, REQUEST_EDIT_ENTRY);
                 }
             }
@@ -86,21 +86,21 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Drink currentDrink = mDrinks.get(position);
+        Lugar currentLugar = mLugars.get(position);
 
-        holder.mDrink = currentDrink;
+        holder.mLugar = currentLugar;
 
-        holder.mCommentTextView.setText(  currentDrink.comments);
-        holder.mDateTimeTextView.setText(  currentDrink.dateAndTime.toString());
-        if (currentDrink.imageUri != null){
+        holder.mCommentTextView.setText(  currentLugar.comments);
+        holder.mDateTimeTextView.setText(  currentLugar.dateAndTime.toString());
+        if (currentLugar.imageUri != null){
             holder.mImageView.setImageURI(
-                    Uri.parse(currentDrink.imageUri));
+                    Uri.parse(currentLugar.imageUri));
 
 
             ////////////
-            if (currentDrink.imageUri != null){
+            if (currentLugar.imageUri != null){
                 Bitmap bitmap =
-                        getBitmapFromUri(Uri.parse(currentDrink.imageUri));
+                        getBitmapFromUri(Uri.parse(currentLugar.imageUri));
                 holder.mImageView.setImageBitmap(bitmap);
              /////////////////////
             }
@@ -126,6 +126,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return mDrinks.size();
+        return mLugars.size();
     }
 }

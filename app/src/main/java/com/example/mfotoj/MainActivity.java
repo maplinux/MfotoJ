@@ -9,16 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mfotoj.adapters.MainAdapter;
-import com.example.mfotoj.models.Drink;
+import com.example.mfotoj.models.Lugar;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-
 public class MainActivity extends AppCompatActivity {
 
     private MainAdapter mAdapter;
-    private ArrayList<Drink> mDrinks;
+    private ArrayList<Lugar> mLugars;
 
 
     @Override
@@ -32,20 +31,22 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         ////Dumi
-        mDrinks = new ArrayList<Drink>();
-        Drink firstDrink = new Drink();
-        firstDrink.comments = "I like water with bubbles most of the time...";
-        firstDrink.dateAndTime = new Date();
+
+        mLugars = new ArrayList<Lugar>();
+        Lugar firstLugar = new Lugar();
+        firstLugar.comments = "I like water with bubbles most of the time...";
+        firstLugar.dateAndTime = new Date();
         //firstDrink.imageUri = "/sdcard/1603945076458selfie.jpg";
-        mDrinks.add(firstDrink);
-        Drink secondDrink = new Drink();
-        secondDrink.comments = "I also like water without bubbles. It depends on my mood I guess ;-)";
-        secondDrink.dateAndTime = new Date();
-        mDrinks.add(secondDrink);
+        mLugars.add(firstLugar);
+        Lugar secondLugar = new Lugar();
+        secondLugar.comments = "I also like water without bubbles. It depends on my mood I guess ;-)";
+        secondLugar.dateAndTime = new Date();
+        mLugars.add(secondLugar);
 
         ////fin Dumi
 
-        mAdapter = new MainAdapter(this, mDrinks);
+
+        mAdapter = new MainAdapter(this, mLugars);
         recyclerView.setAdapter(mAdapter);
 
         findViewById(R.id.main_button_add).setOnClickListener(new View.OnClickListener() {
@@ -69,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_NEW_ENTRY && resultCode == RESULT_OK)
         {
             Bundle bundle = data.getExtras();
-            Drink newDrink = new Drink();
-            newDrink.comments = bundle.getString("comments");
-            newDrink.imageUri = bundle.getString("uri");
-            newDrink.dateAndTime = new Date();
-            mDrinks.add(newDrink);
+            Lugar newLugar = new Lugar();
+            newLugar.comments = bundle.getString("comments");
+            newLugar.imageUri = bundle.getString("uri");
+            newLugar.dateAndTime = new Date();
+            mLugars.add(newLugar);
             mAdapter.notifyDataSetChanged();
         }
 
